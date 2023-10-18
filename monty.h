@@ -10,6 +10,8 @@
 #define MAX_LINE_CHARS 1024
 #define DELIM " \n"
 
+#define UNUSED(a, b) ((a == NULL) * 0 + b)
+
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
 * @n: integer
@@ -69,6 +71,7 @@ void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
 void add(stack_t **, unsigned int);
+void nop(stack_t **, unsigned int);
 bool is_integer(char *);
 void shutdown(void);
 

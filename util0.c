@@ -33,6 +33,7 @@ void execute(void)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 
