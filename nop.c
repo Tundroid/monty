@@ -12,10 +12,4 @@ void nop(stack_t **stack, unsigned int line_number)
 
 	stat = UNUSED(*stack, EXIT_FAILURE);
 	opcode = strtok(bundle.line_text, DELIM);
-	if (strtok(NULL, DELIM))
-	{
-		fprintf(stderr, "L%d: usage: %s\n", line_number, opcode);
-		bundle.status = stat;
-		shutdown();
-	}
 }

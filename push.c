@@ -11,9 +11,9 @@ void push(stack_t **stack, unsigned int line_number)
 
 	opcode = strtok(bundle.line_text, DELIM);
 	n = strtok(NULL, DELIM);
-	if (!n || !is_integer(n) || strtok(NULL, DELIM))
+	if (!n || !is_integer(n))
 	{
-		fprintf(stderr, "L%d: usage: %s %s\n", line_number, opcode, n);
+		fprintf(stderr, "L%d: usage: %s integer\n", line_number, opcode);
 		bundle.status = EXIT_FAILURE;
 		shutdown();
 	}
