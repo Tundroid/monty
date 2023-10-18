@@ -45,7 +45,7 @@ void execute(void)
 			return;
 		}
 	}
-	fprintf(stderr, "L%d: unknown instruction %s", bundle.line_number, opcode);
+	fprintf(stderr, "L%d: unknown instruction %s\n", bundle.line_number, opcode);
 	bundle.status = EXIT_FAILURE;
 	shutdown();
 }
