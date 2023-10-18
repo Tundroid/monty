@@ -7,7 +7,6 @@
 */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *item;
 	char *opcode, *n;
 
 	opcode = strtok(bundle.line_text, DELIM);
@@ -19,8 +18,20 @@ void push(stack_t **stack, unsigned int line_number)
 		shutdown();
 	}
 
+	push_helper(stack, atoi(n));
+}
+
+/**
+* push_helper - helps add an element to top of stack
+* @stack: stack top
+* @n: number to be pushed
+*/
+void push_helper(stack_t **stack, int n)
+{
+	stack_t *item;
+
 	item = stack_alloc();
-	item->n = atoi(n);
+	item->n = n;
 	item->next = *stack;
 	item->prev = NULL;
 	if (*stack)

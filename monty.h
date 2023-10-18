@@ -72,4 +72,10 @@ void add(stack_t **, unsigned int);
 bool is_integer(char *);
 void shutdown(void);
 
+/*
+ * Helper functions
+*/
+void push_helper(stack_t **, int);
+void pop_helper(stack_t **);
+
 #endif

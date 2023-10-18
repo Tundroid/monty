@@ -7,7 +7,6 @@
 */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
 	char *opcode;
 
 	opcode = strtok(bundle.line_text, DELIM);
@@ -21,11 +20,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	if (stack && *stack)
 	{
 		printf("%d\n", (*stack)->n);
-		tmp = (*stack)->next;
-		if (tmp)
-			tmp->prev = NULL;
-		free(*stack);
-		*stack = tmp;
+		pop_helper(stack);
 	}
 	else
 	{
@@ -33,4 +28,20 @@ void pop(stack_t **stack, unsigned int line_number)
 		bundle.status = EXIT_FAILURE;
 		shutdown();
 	}
+}
+
+/**
+* pop_helper - removes last element from stack
+* @stack: stack top
+* @line_number: script line under execution
+*/
+void pop_helper(stack_t **stack)
+{
+	stack_t *tmp;
+
+	tmp = (*stack)->next;
+	if (tmp)
+		tmp->prev = NULL;
+	free(*stack);
+	*stack = tmp;
 }

@@ -7,7 +7,7 @@
 */
 void add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
+	int sum;
 	char *opcode;
 
 	opcode = strtok(bundle.line_text, DELIM);
@@ -18,18 +18,16 @@ void add(stack_t **stack, unsigned int line_number)
 		shutdown();
 	}
 
-	if (stack && *stack)
+	if (stack && *stack && (*stack)->next)
 	{
-		printf("%d\n", (*stack)->n);
-		tmp = (*stack)->next;
-		if (tmp)
-			tmp->prev = NULL;
-		free(*stack);
-		*stack = tmp;
+		sum = (*stack)->n + (*stack)->next->n;
+		pop_helper(stack);
+		pop_helper(stack);
+		push_helper(stack, sum);
 	}
 	else
 	{
-		fprintf(stderr, "L%d: can't %s an empty stack\n", line_number, opcode);
+		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
 		bundle.status = EXIT_FAILURE;
 		shutdown();
 	}
