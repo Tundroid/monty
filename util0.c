@@ -30,6 +30,7 @@ void execute(void)
 		{"pall", pall},
 		{"push", push},
 		{"pop", pop},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 

@@ -66,6 +66,7 @@ void execute(void);
 void pall(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
+void pint(stack_t **, unsigned int);
 bool is_integer(char *);
 void shutdown(void);
 
