@@ -64,6 +64,7 @@ void execute(void)
 bool is_integer(char *str)
 {
 	char *tmp = str;
+
 	if (*tmp == '-')
 		tmp++;
 	while (*tmp)
