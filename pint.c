@@ -9,6 +9,7 @@ void pint(stack_t **stack, unsigned int line_number)
 {
 	char *opcode;
 
+	UNUSED(line_number);
 	opcode = strtok(bundle.line_text, DELIM);
 	if (stack && *stack)
 	{

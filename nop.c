@@ -7,9 +7,6 @@
 */
 void nop(stack_t **stack, unsigned int line_number)
 {
-	char *opcode;
-	int stat;
-
-	stat = UNUSED(*stack, EXIT_FAILURE);
-	opcode = strtok(bundle.line_text, DELIM);
+	UNUSED(stack);
+	UNUSED(line_number);
 }

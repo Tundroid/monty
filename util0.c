@@ -44,7 +44,6 @@ void execute(void)
 	bundle.line_number++;
 	while (action[i].opcode)
 	{
-		printf("%s-%s\n", opcode, action[i].opcode);
 		if (strcmp(opcode, action[i++].opcode) == 0)
 		{
 			action[--i].f(&bundle.stack, bundle.line_number);
@@ -66,7 +65,7 @@ bool is_integer(char *str)
 {
 	char *tmp = str;
 	if (*tmp == '-')
-		*tmp++;
+		tmp++;
 	while (*tmp)
 		if (!isdigit(*tmp++))
 			return (false);

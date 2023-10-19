@@ -10,7 +10,7 @@
 #define MAX_LINE_CHARS 1024
 #define DELIM " \n"
 
-#define UNUSED(a, b) ((a == NULL) * 0 + b)
+#define UNUSED(var) (void)(var)
 
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)

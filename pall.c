@@ -8,15 +8,15 @@
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
-	char *opcode;
 
-	opcode = strtok(bundle.line_text, DELIM);
+	UNUSED(line_number);
 	if (stack && *stack)
 	{
 		tmp = *stack;
 		while (tmp)
 		{
 			printf("%d\n", tmp->n);
+			fflush(stdout);
 			tmp = tmp->next;
 		}
 	}
