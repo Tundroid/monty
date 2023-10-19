@@ -43,7 +43,7 @@ void execute(void)
 
 	strcpy(bundle.tmp, bundle.line_text);
 	opcode = strtok(bundle.tmp, DELIM);
-	if (!opcode)
+	if (!opcode || *opcode == '#')
 		return;
 	bundle.line_number++;
 	while (action[i].opcode)
