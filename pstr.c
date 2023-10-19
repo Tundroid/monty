@@ -20,6 +20,6 @@ void pstr(stack_t **stack, unsigned int line_number)
 			printf("%c", tmp->n);
 			tmp = tmp->next;
 		}
-		putchar('\n');
 	}
+	putchar('\n');
 }
