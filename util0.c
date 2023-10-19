@@ -29,8 +29,10 @@ void execute(void)
 	instruction_t action[] = {
 		{"pall", pall},
 		{"push", push},
-		{"pint", pint},
 		{"pop", pop},
+		{"pint", pint},
+		{"pchar", pchar},
+		{"pstr", pstr},
 		{"swap", swap},
 		{"add", add},
 		{"sub", sub},
