@@ -42,6 +42,8 @@ void execute(void)
 		{"nop", nop},
 		{"rotl", rotl},
 		{"rotr", rotr},
+		{"stack", mode},
+		{"queue", mode},
 		{NULL, NULL}
 	};
 

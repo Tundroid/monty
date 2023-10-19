@@ -43,6 +43,16 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
+ * enum mode_s - mode enumeration
+ * @stack: stack mode
+ * @queue: queue mode
+*/
+typedef enum mode_s
+{
+	_stack, _queue
+} mode_t;
+
+/**
 * struct bundle_s - number and text
 * @line_number: of file
 * @line_text: buffer to hold line text
@@ -50,6 +60,7 @@ typedef struct instruction_s
 * @file: pointer to script
 * @stack: to hold items
 * @status: code
+* @mode: program mode
 */
 typedef struct bundle_s
 {
@@ -59,6 +70,7 @@ typedef struct bundle_s
 	FILE *file;
 	stack_t *stack;
 	short status;
+	mode_t mode;
 } bundle_t;
 
 extern bundle_t bundle;
@@ -80,6 +92,7 @@ void mod(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
 void rotl(stack_t **, unsigned int);
 void rotr(stack_t **, unsigned int);
+void mode(stack_t **, unsigned int);
 bool is_integer(char *);
 void shutdown(void);
 
