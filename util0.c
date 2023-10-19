@@ -41,6 +41,7 @@ void execute(void)
 		{"mod", mod},
 		{"nop", nop},
 		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}
 	};
 
