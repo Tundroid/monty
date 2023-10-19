@@ -78,6 +78,7 @@ void _div(stack_t **, unsigned int);
 void mul(stack_t **, unsigned int);
 void mod(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
+void rotl(stack_t **, unsigned int);
 bool is_integer(char *);
 void shutdown(void);
 

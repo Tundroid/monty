@@ -40,6 +40,7 @@ void execute(void)
 		{"mul", mul},
 		{"mod", mod},
 		{"nop", nop},
+		{"rotl", rotl},
 		{NULL, NULL}
 	};
 
