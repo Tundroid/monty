@@ -50,7 +50,7 @@ typedef struct instruction_s
 typedef enum mode_s
 {
 	_stack, _queue
-} mode_t;
+} mode_s;
 
 /**
 * struct bundle_s - number and text
@@ -60,6 +60,7 @@ typedef enum mode_s
 * @file: pointer to script
 * @stack: to hold items
 * @status: code
+* @mode: program mode
 */
 typedef struct bundle_s
 {
@@ -69,6 +70,7 @@ typedef struct bundle_s
 	FILE *file;
 	stack_t *stack;
 	short status;
+	mode_s mode;
 } bundle_t;
 
 extern bundle_t bundle;
