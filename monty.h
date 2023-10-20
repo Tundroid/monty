@@ -42,15 +42,6 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * enum mode_s - mode enumeration
- * @_stack: stack mode
- * @_queue: queue mode
-*/
-typedef enum mode_s
-{
-	_stack, _queue
-} mode_t;
 
 /**
 * struct bundle_s - number and text
