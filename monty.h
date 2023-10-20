@@ -50,7 +50,7 @@ typedef struct instruction_s
 typedef enum mode_s
 {
 	_stack, _queue
-} mode_s;
+} mode_t;
 
 /**
 * struct bundle_s - number and text
