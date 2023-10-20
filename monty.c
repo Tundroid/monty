@@ -13,7 +13,6 @@ int main(int argc, char **argv)
 {
 	bundle.status = 0;
 	bundle.line_number = 0;
-	bundle.mode = _stack;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
