@@ -44,8 +44,8 @@ typedef struct instruction_s
 
 /**
  * enum mode_s - mode enumeration
- * @stack: stack mode
- * @queue: queue mode
+ * @_stack: stack mode
+ * @_queue: queue mode
 */
 typedef enum mode_s
 {
