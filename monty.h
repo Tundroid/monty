@@ -60,7 +60,6 @@ typedef enum mode_s
 * @file: pointer to script
 * @stack: to hold items
 * @status: code
-* @mode: program mode
 */
 typedef struct bundle_s
 {
