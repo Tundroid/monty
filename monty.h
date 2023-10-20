@@ -70,7 +70,6 @@ typedef struct bundle_s
 	FILE *file;
 	stack_t *stack;
 	short status;
-	int mode;
 } bundle_t;
 
 extern bundle_t bundle;
