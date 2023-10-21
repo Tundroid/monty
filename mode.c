@@ -7,34 +7,13 @@
 */
 void mode(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
 	char *opcode;
 
+	UNUSED(stack);
 	UNUSED(line_number);
 	opcode = strtok(bundle.line_text, " \n");
-	if (strcmp("stack", opcode) == 0)
-	{
-		if (bundle.mode != _stack)
-			bundle.mode = _stack;
-		else
-			return;
-	}
-	if (strcmp("queue", opcode) == 0)
-	{
-		if (bundle.mode != _queue)
-			bundle.mode = _queue;
-		else
-			return;
-	}
-	if (stack && *stack && (*stack)->next)
-	{
-		tmp = *stack;
-		while ((tmp = tmp->next) && tmp->next)
-			;
-		tmp->next = tmp->prev;
-		tmp->prev = NULL;
-		(*stack)->prev = (*stack)->next;
-		(*stack)->next = NULL;
-		*stack = tmp;
-	}
+	if (strcmp("stack", opcode) == 0 && bundle.mode != _stack)
+		bundle.mode = _stack;
+	else if (strcmp("queue", opcode) == 0 && bundle.mode != _queue)
+		bundle.mode = _queue;
 }

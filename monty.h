@@ -58,7 +58,8 @@ typedef enum mode_s
 * @line_text: buffer to hold line text
 * @tmp: temporal text buffer
 * @file: pointer to script
-* @stack: to hold items
+* @stack: head of list
+* @queue: tail of list
 * @status: code
 * @mode: program mode
 */
@@ -69,13 +70,14 @@ typedef struct bundle_s
 	char tmp[MAX_LINE_CHARS];
 	FILE *file;
 	stack_t *stack;
+	stack_t *queue;
 	short status;
 	mode_s mode;
 } bundle_t;
 
 extern bundle_t bundle;
 
-void *stack_alloc(void);
+void *node_alloc(void);
 void execute(void);
 void pall(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);

@@ -1,12 +1,14 @@
 #include "monty.h"
 
+void execute(void);
+
 /**
- * stack_alloc - allocs memory for stack item
+ * node_alloc - allocs memory for stack item
  *
  * Return: pointer to allocated stack item
  * Description: prints error and exit if malloc fails
 */
-void *stack_alloc(void)
+void *node_alloc(void)
 {
 	stack_t *tmp = malloc(sizeof(stack_t));
 
@@ -49,14 +51,18 @@ void execute(void)
 
 	strcpy(bundle.tmp, bundle.line_text);
 	opcode = strtok(bundle.tmp, DELIM);
+	bundle.line_number++;
 	if (!opcode || *opcode == '#')
 		return;
-	bundle.line_number++;
 	while (action[i].opcode)
 	{
 		if (strcmp(opcode, action[i++].opcode) == 0)
 		{
-			action[--i].f(&bundle.stack, bundle.line_number);
+			if (strcmp(opcode, "push") == 0)
+				action[--i].f(bundle.mode == _stack ? &bundle.stack
+				: &bundle.queue, bundle.line_number);
+			else
+				action[--i].f(&bundle.stack, bundle.line_number);
 			return;
 		}
 	}

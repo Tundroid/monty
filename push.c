@@ -23,18 +23,29 @@ void push(stack_t **stack, unsigned int line_number)
 
 /**
 * push_helper - helps add an element to top of stack
-* @stack: stack top
+* @head: stack top
 * @n: number to be pushed
 */
-void push_helper(stack_t **stack, int n)
+void push_helper(stack_t **head, int n)
 {
 	stack_t *item;
+	short not_push;
 
-	item = stack_alloc();
+	not_push = strcmp(bundle.line_text, "push");
+	item = node_alloc();
 	item->n = n;
-	item->next = *stack;
-	item->prev = NULL;
-	if (*stack)
-		(*stack)->prev = item;
-	*stack = item;
+	item->next = not_push || bundle.mode == _stack ? *head : NULL;
+	item->prev = not_push || bundle.mode == _stack ? NULL : *head;
+	if (*head)
+	{
+		if (not_push || bundle.mode == _stack)
+			(*head)->prev = item;
+		else
+			(*head)->next = item;
+		*head = item;
+	}
+	else
+	{
+		bundle.stack = bundle.queue = item;
+	}
 }
