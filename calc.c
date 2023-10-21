@@ -1,142 +1,50 @@
 #include "monty.h"
 
+void calc(stack_t **, unsigned int);
+
 /**
-* add - removes last element from stack
+* calc - removes last element from stack
 * @stack: stack top
 * @line_number: script line under execution
 */
-void add(stack_t **stack, unsigned int line_number)
+void calc(stack_t **stack, unsigned int line_number)
 {
-	int sum;
-	char *opcode;
+	int result;
 
-	opcode = strtok(bundle.line_text, DELIM);
 	if (stack && *stack && (*stack)->next)
 	{
-		sum = (*stack)->n + (*stack)->next->n;
-		pop_helper(stack);
-		pop_helper(stack);
-		push_helper(stack, sum);
-	}
-	else
-	{
-		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
-		bundle.status = EXIT_FAILURE;
-		shutdown();
-	}
-}
-
-/**
-* sub - removes last element from stack
-* @stack: stack top
-* @line_number: script line under execution
-*/
-void sub(stack_t **stack, unsigned int line_number)
-{
-	int diff;
-	char *opcode;
-
-	opcode = strtok(bundle.line_text, DELIM);
-	if (stack && *stack && (*stack)->next)
-	{
-		diff = (*stack)->next->n - (*stack)->n;
-		pop_helper(stack);
-		pop_helper(stack);
-		push_helper(stack, diff);
-	}
-	else
-	{
-		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
-		bundle.status = EXIT_FAILURE;
-		shutdown();
-	}
-}
-
-/**
-* _div - removes last element from stack
-* @stack: stack top
-* @line_number: script line under execution
-*/
-void _div(stack_t **stack, unsigned int line_number)
-{
-	int quo;
-	char *opcode;
-
-	opcode = strtok(bundle.line_text, DELIM);
-	if (stack && *stack && (*stack)->next)
-	{
-		if (!(*stack)->n)
+		if (strcmp(bundle.opcode, "add") == 0)
 		{
-			fprintf(stderr, "L%d: division by zero\n", line_number);
-			bundle.status = EXIT_FAILURE;
-			shutdown();
+			result = (*stack)->next->n + (*stack)->n;
 		}
-		quo = (*stack)->next->n / (*stack)->n;
-		pop_helper(stack);
-		pop_helper(stack);
-		push_helper(stack, quo);
-	}
-	else
-	{
-		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
-		bundle.status = EXIT_FAILURE;
-		shutdown();
-	}
-}
-
-/**
-* mul - removes last element from stack
-* @stack: stack top
-* @line_number: script line under execution
-*/
-void mul(stack_t **stack, unsigned int line_number)
-{
-	int prod;
-	char *opcode;
-
-	opcode = strtok(bundle.line_text, DELIM);
-	if (stack && *stack && (*stack)->next)
-	{
-		prod = (*stack)->next->n * (*stack)->n;
-		pop_helper(stack);
-		pop_helper(stack);
-		push_helper(stack, prod);
-	}
-	else
-	{
-		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
-		bundle.status = EXIT_FAILURE;
-		shutdown();
-	}
-}
-
-/**
-* mod - removes last element from stack
-* @stack: stack top
-* @line_number: script line under execution
-*/
-void mod(stack_t **stack, unsigned int line_number)
-{
-	int rem;
-	char *opcode;
-
-	opcode = strtok(bundle.line_text, DELIM);
-	if (stack && *stack && (*stack)->next)
-	{
-		if (!(*stack)->n)
+		else if (strcmp(bundle.opcode, "sub") == 0)
 		{
-			fprintf(stderr, "L%d: division by zero\n", line_number);
-			bundle.status = EXIT_FAILURE;
-			shutdown();
+			result = (*stack)->next->n - (*stack)->n;
 		}
-		rem = (*stack)->next->n % (*stack)->n;
+		else if (strcmp(bundle.opcode, "mul") == 0)
+		{
+			result = (*stack)->next->n * (*stack)->n;
+		}
+		else if (strcmp(bundle.opcode, "div") == 0)
+		{
+			if (!(*stack)->n)
+				div_by_zero();
+			result = (*stack)->next->n / (*stack)->n;
+		}
+		else if (strcmp(bundle.opcode, "mod") == 0)
+		{
+			if (!(*stack)->n)
+				div_by_zero();
+			result = (*stack)->next->n % (*stack)->n;
+		}
 		pop_helper(stack);
 		pop_helper(stack);
-		push_helper(stack, rem);
+		push_helper(stack, result);
 	}
 	else
 	{
-		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
+		fprintf(stderr, "L%d: can't %s, stack too short\n"
+						, line_number, bundle.opcode);
 		bundle.status = EXIT_FAILURE;
 		shutdown();
 	}

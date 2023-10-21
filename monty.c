@@ -14,6 +14,7 @@ int main(int argc, char **argv)
 	bundle.status =	bundle.line_number = 0;
 	bundle.mode = _stack;
 	bundle.stack = bundle.queue = NULL;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -21,6 +22,7 @@ int main(int argc, char **argv)
 	}
 
 	bundle.file = fopen(argv[1], "r");
+
 	if (!bundle.file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);

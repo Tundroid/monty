@@ -29,21 +29,21 @@ void execute(void)
 	short i = 0;
 	char *opcode;
 	instruction_t action[] = {
-		{"pall", pall},
+		{"pall", print_all},
 		{"push", push},
 		{"pop", pop},
-		{"pint", pint},
-		{"pchar", pchar},
-		{"pstr", pstr},
+		{"pint", print_top},
+		{"pchar", print_top},
+		{"pstr", print_all},
 		{"swap", swap},
-		{"add", add},
-		{"sub", sub},
-		{"div", _div},
-		{"mul", mul},
-		{"mod", mod},
+		{"add", calc},
+		{"sub", calc},
+		{"div", calc},
+		{"mul", calc},
+		{"mod", calc},
 		{"nop", nop},
-		{"rotl", rotl},
-		{"rotr", rotr},
+		{"rotl", rot},
+		{"rotr", rot},
 		{"stack", mode},
 		{"queue", mode},
 		{NULL, NULL}
@@ -58,6 +58,7 @@ void execute(void)
 	{
 		if (strcmp(opcode, action[i++].opcode) == 0)
 		{
+			bundle.opcode = strtok(bundle.line_text, DELIM);
 			if (strcmp(opcode, "push") == 0)
 				action[--i].f(bundle.mode == _stack ? &bundle.stack
 				: &bundle.queue, bundle.line_number);
@@ -100,11 +101,20 @@ void shutdown(void)
 	stack_t *tmp;
 
 	fclose(bundle.file);
-
 	while ((tmp = bundle.stack))
 	{
 		bundle.stack = bundle.stack->next;
 		free(tmp);
 	}
 	exit(bundle.status);
+}
+
+/**
+ * div_by_zero - e
+*/
+void div_by_zero(void)
+{
+	fprintf(stderr, "L%d: division by zero\n", bundle.line_number);
+	bundle.status = EXIT_FAILURE;
+	shutdown();
 }

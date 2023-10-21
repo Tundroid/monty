@@ -62,6 +62,8 @@ typedef enum mode_s
 * @queue: tail of list
 * @status: code
 * @mode: program mode
+* @opcode: opcode
+* @error_text: s
 */
 typedef struct bundle_s
 {
@@ -73,29 +75,25 @@ typedef struct bundle_s
 	stack_t *queue;
 	short status;
 	mode_s mode;
+	char *opcode;
+	char error_text[MAX_LINE_CHARS];
 } bundle_t;
 
 extern bundle_t bundle;
 
 void *node_alloc(void);
 void execute(void);
-void pall(stack_t **, unsigned int);
+void print_all(stack_t **, unsigned int);
 void push(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
-void pint(stack_t **, unsigned int);
-void pchar(stack_t **, unsigned int);
-void pstr(stack_t **, unsigned int);
+void print_top(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
-void add(stack_t **, unsigned int);
-void sub(stack_t **, unsigned int);
-void _div(stack_t **, unsigned int);
-void mul(stack_t **, unsigned int);
-void mod(stack_t **, unsigned int);
+void calc(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
-void rotl(stack_t **, unsigned int);
-void rotr(stack_t **, unsigned int);
+void rot(stack_t **, unsigned int);
 void mode(stack_t **, unsigned int);
 bool is_integer(char *);
+void div_by_zero(void);
 void shutdown(void);
 
 /*

@@ -7,13 +7,11 @@
 */
 void push(stack_t **stack, unsigned int line_number)
 {
-	char *opcode, *n;
+	char *n = strtok(NULL, DELIM);
 
-	opcode = strtok(bundle.line_text, DELIM);
-	n = strtok(NULL, DELIM);
 	if (!n || !is_integer(n))
 	{
-		fprintf(stderr, "L%d: usage: %s integer\n", line_number, opcode);
+		fprintf(stderr, "L%d: usage: %s integer\n", line_number, bundle.opcode);
 		bundle.status = EXIT_FAILURE;
 		shutdown();
 	}
@@ -28,11 +26,9 @@ void push(stack_t **stack, unsigned int line_number)
 */
 void push_helper(stack_t **head, int n)
 {
-	stack_t *item;
-	short not_push;
+	short not_push = strcmp(bundle.line_text, "push");
+	stack_t *item = node_alloc();
 
-	not_push = strcmp(bundle.line_text, "push");
-	item = node_alloc();
 	item->n = n;
 	item->next = not_push || bundle.mode == _stack ? *head : NULL;
 	item->prev = not_push || bundle.mode == _stack ? NULL : *head;

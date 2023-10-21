@@ -8,9 +8,7 @@
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
-	char *opcode;
 
-	opcode = strtok(bundle.line_text, DELIM);
 	if (stack && *stack && (*stack)->next)
 	{
 		tmp = (*stack)->next;
@@ -24,7 +22,8 @@ void swap(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
+		fprintf(stderr, "L%d: can't %s, stack too short\n"
+						, line_number, bundle.opcode);
 		bundle.status = EXIT_FAILURE;
 		shutdown();
 	}
