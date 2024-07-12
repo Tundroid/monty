@@ -1,10 +1,6 @@
 #include "monty.h"
 
-/**
-* swap - removes last element from stack
-* @stack: stack top
-* @line_number: script line under execution
-*/
+
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
