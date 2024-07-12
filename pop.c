@@ -2,7 +2,7 @@
 
 /**
 * pop - removes last element from stack
-* @stack: stack top
+* @stack: pointer to stack top
 * @line_number: script line under execution
 */
 void pop(stack_t **stack, unsigned int line_number)
