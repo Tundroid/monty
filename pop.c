@@ -22,7 +22,7 @@ void pop(stack_t **stack, unsigned int line_number)
 
 /**
 * pop_helper - removes last element from stack
-* @stack: stack top
+* @stack: pointer to stack top
 */
 void pop_helper(stack_t **stack)
 {
