@@ -2,7 +2,7 @@
 
 /**
 * push - adds an elements to top of stack
-* @stack: stack top
+* @stack: pointer to stack top
 * @line_number: script line under execution
 */
 void push(stack_t **stack, unsigned int line_number)
